@@ -31,6 +31,7 @@ import java.util.Set;
  * 
  * 
  * Problem link: https://leetcode.com/problems/find-the-duplicate-number/
+ * Solution link: https://www.youtube.com/watch?v=32Ll35mhWg0&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=6
  */
 
 public class FindTheDuplicateNumber {
@@ -49,12 +50,13 @@ public class FindTheDuplicateNumber {
 	public int findDuplicateBrute(int[] nums) {
 		// Store total number of elements in variable n
 		int n = nums.length;
-		
+
 		// Sort the entire array using Arrays.sort() utility function
 		Arrays.sort(nums);
-		
+
 		// The duplicate number will be will be next to original number
-		// Therefore iterate and just check current and next number, if same return that number
+		// Therefore iterate and just check current and next number, if same return that
+		// number
 		for (int i = 0; i < n - 1; i++) {
 			int current = nums[i];
 			int next = nums[i + 1];
@@ -62,34 +64,70 @@ public class FindTheDuplicateNumber {
 				return current;
 			}
 		}
-		
+
 		// if no number is duplicate
 		return -1;
 	}
-	
+
 	// Better: TC: O(N) SC: O(N)
-	public int findDuplicate(int[] nums) {
+	public int findDuplicateBetter(int[] nums) {
 		// Store total number of elements in variable n
 		int n = nums.length;
-		
+
 		// Creating a HashSet to store all numbers we have encountered
 		Set<Integer> recordSet = new HashSet<>();
-		
-		for(int i = 0; i < n; i++) {
+
+		for (int i = 0; i < n; i++) {
 			int number = nums[i];
-			
-			// If number is already present in the set then number is duplicate number
-			if(recordSet.contains(number)) {
+
+			// If number is already present in the set then the duplicate number will be
+			// next to original number
+			if (recordSet.contains(number)) {
 				// return duplicate number
 				return number;
 			}
-			
+
 			// else add that number to set
 			recordSet.add(number);
 		}
-		
+
 		// If no number is found to be duplicate then return -1
 		return -1;
+	}
+
+	// Optimized: TC: O(N) SC: O(1)
+	// Linked List cycle method
+	public int findDuplicate(int[] nums) {
+
+		// Initialize 2 variables slow and fast to start of the array(first number of
+		// array).
+		// Slow moves 1 step while fast moves 2 step at once.
+		int slow = nums[0];
+		int fast = nums[0];
+
+		// The idea is there are number 1 to n and one number is duplicate
+		// So a cycle will be formed (always).
+
+		// Run a do while loop till fast and slow collide
+		do {
+			// Assign slow to nums[slow]. This will point to next number.
+			slow = nums[slow];
+			// Assign fast to nums[nums[fast]]. This point to next to next number.
+			fast = nums[nums[fast]];
+		} while (slow != fast);
+
+		// Assign fast pointer to start and move slow and fast pointer 1 step
+		// simultaneously.
+		fast = nums[0];
+
+		// When they collide then the number they are pointing will be duplicate number.
+		while (slow != fast) {
+			slow = nums[slow];
+			fast = nums[fast];
+		}
+
+		// return that number
+		return slow;
 	}
 
 }
