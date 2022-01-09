@@ -41,7 +41,7 @@ public class FindTheDuplicateNumber {
 
 		int[] nums = { 1, 3, 4, 2, 2 };
 
-		int missing = obj.findDuplicate(nums);
+		int missing = obj.findDuplicateBetter2(nums);
 
 		System.out.println(missing);
 	}
@@ -51,12 +51,12 @@ public class FindTheDuplicateNumber {
 		// Store total number of elements in variable n
 		int n = nums.length;
 
+		// ALWAYS AVOID THIS (Because it changes original array)
 		// Sort the entire array using Arrays.sort() utility function
 		Arrays.sort(nums);
 
 		// The duplicate number will be will be next to original number
-		// Therefore iterate and just check current and next number, if same return that
-		// number
+		// Therefore iterate and just check current and next number, if same return that number
 		for (int i = 0; i < n - 1; i++) {
 			int current = nums[i];
 			int next = nums[i + 1];
@@ -68,10 +68,38 @@ public class FindTheDuplicateNumber {
 		// if no number is duplicate
 		return -1;
 	}
+	
+	// Better: TC: O(N) SC: O(N)
+	// If use of external library is not allowed.
+	public int findDuplicateBetter2(int[] nums) {
+		// Store total number of elements in variable n.
+		int n = nums.length;
+		
+		// Frequency array to count occurrences of elements in nums array.
+		int[] freq = new int[n+1];
+		
+		// To set all others to 0 also.
+		freq[0] = 0;
+		
+		
+		for(int i = 0; i < n; i++) {
+			freq[nums[i]]++;
+		}
+		
+		// Finding which number has frequency 2, starting from 2nd index as 1st index will always be zero.
+		for(int i = 1; i < n+1; i++) {
+			if(freq[i] == 2) {
+				return i;
+			}
+		}
+		
+		// If no number is duplicate.
+		return -1;
+	}
 
 	// Better: TC: O(N) SC: O(N)
 	public int findDuplicateBetter(int[] nums) {
-		// Store total number of elements in variable n
+		// Store total number of elements in variable n.
 		int n = nums.length;
 
 		// Creating a HashSet to store all numbers we have encountered
