@@ -30,8 +30,110 @@ public class FindMissingAndDuplicate {
 
 	}
 
-	// Naive: TC: O(N) SC: O(N)
+	// Optimal: TC: ~O(5N) SC: O(1)
 	public int[] findMissingAndDuplicateNumber(int[] arr) {
+
+		// Total elements in array.
+		int n = arr.length;
+		// Initialize variable XOR as 0.
+		int XOR = 0;
+
+		// XOR all elements in a variable.
+		// Then XOR with numbers 1 to n.
+		for (int i = 0; i < n; i++) {
+			XOR ^= arr[i];
+			XOR ^= i + 1;
+		}
+
+		// The XOR value now will be the the x-or of missing and repeating number.
+		// Get the right most bit of XOR using getRightMostSetBit() method and store in
+		// bitIndex variable.
+		int bitIndex = getRightMostSetBit(XOR);
+
+		// Create 2 buckets and initialize to zero
+		int bucket1 = 0;
+		int bucket2 = 0;
+
+		// Separate elements in 2 buckets on the basis of set bit index.
+		for (int number : arr) {
+
+			if (isSetBit(number, bitIndex)) {
+				bucket1 ^= number;
+			} else {
+				bucket2 ^= number;
+			}
+
+		}
+
+		// Now from elements 1 to n, separate these numbers in 2 buckets same as we
+		// separated elements.
+		for (int i = 1; i <= n; i++) {
+			if (isSetBit(i, bitIndex)) {
+				bucket1 ^= i;
+			} else {
+				bucket2 ^= i;
+			}
+		}
+
+		// Now it is guaranteed that one bucket has missing and another has repeating
+		// number.
+		// To find out traverse the array again.
+
+		// result[0] = missing
+		// result[1] = duplicate
+		int result[] = { bucket1, bucket2 };
+
+		for (int number : arr) {
+			// if the number is same as element in bucket1 that means it's repeating number
+			// we want it in bucket2
+			if (number == bucket1) {
+				result[0] = bucket2;
+				result[1] = bucket1;
+				break;
+			}
+		}
+
+		// Return the result
+		return result;
+	}
+
+	// To check if a number has a bit set or not at given index
+	// Example: 4
+	// 4 in binary is 1 0 0
+	// index         ->  3 2 1
+	// binary number ->  1 0 0
+	// Index 3 is set bit meanwhile index 2 and 1 are not
+	private boolean isSetBit(int number, int index) {
+		int mask = (1 << index) & number;
+
+		if (mask != 0) {
+			return true;
+		}
+		return false;
+	}
+
+	// To get index of right most set bit
+	// Example: 9
+	// 9 in binary is 1 0 0 1
+	// index 		 -> 4 3 2 1
+	// binary number -> 1 0 0 1
+	// Index 4 is right most binary number
+	private int getRightMostSetBit(int number) {
+		int bitIndex = 0;
+		int i = 31;
+		while (i >= 0) {
+			int mask = (1 << i) & number;
+			if (mask != 0) {
+				bitIndex = i;
+				break;
+			}
+			i--;
+		}
+		return bitIndex;
+	}
+
+	// Naive: TC: O(2N) SC: O(N + 1)
+	public int[] findMissingAndDuplicateNumberBrute(int[] arr) {
 		// Store total number of elements in variable n.
 		int n = arr.length;
 
@@ -61,9 +163,9 @@ public class FindMissingAndDuplicate {
 				result[1] = i;
 				repeatingFound = true;
 			}
-			
+
 			// If both numbers are found, no need to check further.
-			if(missingFound && repeatingFound) {
+			if (missingFound && repeatingFound) {
 				break;
 			}
 		}
