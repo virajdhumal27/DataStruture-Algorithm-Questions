@@ -48,18 +48,27 @@ public class FindMissingAndDuplicate {
 		// result[0] = missing
 		// result[1] = duplicate
 		int[] result = new int[2];
+		boolean missingFound = false;
+		boolean repeatingFound = false;
 
 		// Finding which number has frequency 2, starting from 2nd index as 1st index
 		// will always be zero.
 		for (int i = 1; i < n + 1; i++) {
 			if (freq[i] == 0) {
 				result[0] = i;
+				missingFound = true;
 			} else if (freq[i] == 2) {
 				result[1] = i;
+				repeatingFound = true;
+			}
+			
+			// If both numbers are found, no need to check further.
+			if(missingFound && repeatingFound) {
+				break;
 			}
 		}
 
-		// If no number is duplicate
+		// Return the result
 		return result;
 	}
 
