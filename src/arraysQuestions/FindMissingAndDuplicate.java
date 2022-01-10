@@ -143,6 +143,12 @@ public class FindMissingAndDuplicate {
 		// To set all others to 0 also
 		freq[0] = 0;
 
+		// Incrementing freq array at that number
+		// If nums[1] = 6
+		// then freq[6] += 1
+		
+		// if nums[2] = 3
+		// then freq[3] += 1
 		for (int i = 0; i < n; i++) {
 			freq[arr[i]]++;
 		}
