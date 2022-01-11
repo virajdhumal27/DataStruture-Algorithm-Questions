@@ -48,6 +48,11 @@ public class FindTheDuplicateNumber {
 
 	// Brute Force: TC O(NlogN) SC:O(1)
 	public int findDuplicateBrute(int[] nums) {
+		// Defensive programming: Making sure values are in range.
+		if(nums == null || nums.length == 0) {
+			return -1;
+		}
+		
 		// Store total number of elements in variable n
 		int n = nums.length;
 
@@ -72,6 +77,11 @@ public class FindTheDuplicateNumber {
 	// Better: TC: O(N) SC: O(N)
 	// If use of external library is not allowed.
 	public int findDuplicateBetter2(int[] nums) {
+		// Defensive programming: Making sure values are in range.
+		if(nums == null || nums.length == 0) {
+			return -1;
+		}
+		
 		// Store total number of elements in variable n.
 		int n = nums.length;
 		
@@ -99,6 +109,11 @@ public class FindTheDuplicateNumber {
 
 	// Better: TC: O(N) SC: O(N)
 	public int findDuplicateBetter(int[] nums) {
+		// Defensive programming: Making sure values are in range.
+		if(nums == null || nums.length == 0) {
+			return -1;
+		}
+		
 		// Store total number of elements in variable n.
 		int n = nums.length;
 
@@ -126,6 +141,10 @@ public class FindTheDuplicateNumber {
 	// Optimized: TC: O(N) SC: O(1)
 	// Linked List cycle method
 	public int findDuplicate(int[] nums) {
+		// Defensive programming: Making sure values are in range.
+		if(nums == null || nums.length == 0) {
+			return -1;
+		}
 
 		// Initialize 2 variables slow and fast to start of the array(first number of
 		// array).

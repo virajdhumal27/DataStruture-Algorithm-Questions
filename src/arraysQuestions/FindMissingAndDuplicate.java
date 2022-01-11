@@ -32,6 +32,10 @@ public class FindMissingAndDuplicate {
 
 	// Optimal: TC: ~O(5N) SC: O(1)
 	public int[] findMissingAndDuplicateNumber(int[] arr) {
+		// Defensive programming: Making sure values are in range.
+		if(arr == null || arr.length == 0) {
+			return arr;
+		}
 
 		// Total elements in array.
 		int n = arr.length;
@@ -134,6 +138,11 @@ public class FindMissingAndDuplicate {
 
 	// Naive: TC: O(2N) SC: O(N + 1)
 	public int[] findMissingAndDuplicateNumberBrute(int[] arr) {
+		// Defensive programming: Making sure values are in range.
+		if(arr == null || arr.length == 0) {
+			return arr;
+		}
+		
 		// Store total number of elements in variable n.
 		int n = arr.length;
 

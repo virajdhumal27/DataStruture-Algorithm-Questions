@@ -40,9 +40,14 @@ public class Sort012 {
 		System.out.println(nums[n - 1]);
 	}
 
+	// Brute Force: TC: O(2N) SC: O(1)
 	public void sortColorsBrute(int[] nums) {
+		// Defensive programming: Making sure values are in range.
+		if(nums == null || nums.length == 0) {
+			return;
+		}
+		
 		// Initialize variable zeros, ones, twos to 0
-		// Brute Force
 		int zeros = 0;
 		int ones = 0;
 		int twos = 0;
@@ -79,8 +84,13 @@ public class Sort012 {
 		}
 	}
 
-	// Efficent
+	// Efficient: TC O(N) SC:O(1)
 	public void sortColors(int[] nums) {
+		// Defensive programming: Making sure values are in range.
+		if(nums == null || nums.length == 0) {
+			return;
+		}
+		
 		// Initialize variables low and mid to 0 and high to n-1
 		int low = 0;
 		int mid = 0;
@@ -111,6 +121,7 @@ public class Sort012 {
 		}
 	}
 
+	// Efficient swapping
 	private void swap(int[] a, int i, int j) {
 		a[i] = a[i] ^ a[j];
 		a[j] = a[i] ^ a[j];
