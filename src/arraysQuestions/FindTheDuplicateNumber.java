@@ -41,7 +41,7 @@ public class FindTheDuplicateNumber {
 
 		int[] nums = { 1, 3, 4, 2, 2 };
 
-		int missing = obj.findDuplicateBetter2(nums);
+		int missing = obj.findDuplicate(nums);
 
 		System.out.println(missing);
 	}
