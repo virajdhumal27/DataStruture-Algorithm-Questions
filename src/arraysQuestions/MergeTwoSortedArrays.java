@@ -40,13 +40,73 @@ public class MergeTwoSortedArrays {
 		obj.printArray(arr1);
 		obj.printArray(arr2);
 	}
-	
+
+	// Optimal: TC: O(NlogN) SC: O(1);
 	public void mergeArrays(int[] arr1, int[] arr2) {
 		// Size of arr1 and arr2 in n and m respectively
-		// Create a variable gap, that will be equal to ceil value of additon of length of both arrays
+		final int n = arr1.length;
+		final int m = arr2.length;
+
+		// Defensive programming: Making sure values are in range.
+		if (arr1 == null || arr2 == null || n == 0 || m == 0) {
+			System.out.println("out");
+			return;
+		}
+
+		final int totalSize = m + n;
+
+		// Create a variable gap, that will be equal to additon of length of both arrays
+		int gap = totalSize;
+
+		// do-while loop, because we need to execute when gap is 1 also.
+		do {
+			// gap = ceil(gap/2);
+			gap = (int) Math.ceil((float) gap / 2);
+
+			// firstIndex = 0, secondIndex = firstIndex + gap
+			int firstIndex = 0;
+			int secondIndex = firstIndex + gap;
+
+			
+			shellSort(arr1, arr2, n, totalSize, firstIndex, secondIndex);
+
+		} while (gap != 1);
+
+	}
+
+	// Sort the 2 arrays based on gaps
+	private void shellSort(int[] arr1, int[] arr2, int n, int totalSize, int firstIndex, int secondIndex) {
 		
-		// Loop till gap = 1
-		
+		// loop till secondIndex is less than total size.
+		while (secondIndex < totalSize) {
+			
+			// if firstIndex >= n that means both firstIndex and secondIndex are in arr2
+			if (firstIndex >= n) {
+				int index1 = firstIndex - n;
+				int index2 = secondIndex - n;
+				if (arr2[index1] > arr2[index2]) {
+					swap(arr2, arr2, index1, index2);
+				}
+			} // if secondIndex >= n that means firstIndex is in arr1 and secondIndex is in arr2
+			else if (secondIndex >= n) {
+				int arr1Index = firstIndex;
+				int arr2Index = secondIndex - n;
+				// if element at firstIndex is big then swap with element at secondIndex
+				if (arr1[arr1Index] > arr2[arr2Index]) {
+					swap(arr1, arr2, arr1Index, arr2Index);
+				}
+			} // This means both firstIndex and secondIndex are in arr1
+			else {
+				// if element at firstIndex is big then swap with element at secondIndex else
+				// pass
+				if (arr1[firstIndex] > arr1[secondIndex]) {
+					swap(arr1, arr1, firstIndex, secondIndex);
+				}
+			}
+			firstIndex++;
+			secondIndex++;
+		}
+
 	}
 
 	// Better: TC: O(N * M) SC: O(1)
@@ -69,6 +129,7 @@ public class MergeTwoSortedArrays {
 		}
 	}
 
+	// Efficient swap
 	private void swap(int[] arr1, int[] arr2, int i, int j) {
 		arr1[i] = arr1[i] ^ arr2[j];
 		arr2[j] = arr1[i] ^ arr2[j];
