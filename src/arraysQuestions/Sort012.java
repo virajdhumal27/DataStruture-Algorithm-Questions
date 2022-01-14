@@ -34,10 +34,8 @@ public class Sort012 {
 		obj.sortColors(nums);
 
 		System.out.println();
-		for (int i = 0; i < n - 1; i++) {
-			System.out.print(nums[i] + ", ");
-		}
-		System.out.println(nums[n - 1]);
+		
+		ArrayUtilCustom.printArray(nums, n);
 	}
 
 	// Brute Force: TC: O(2N) SC: O(1)

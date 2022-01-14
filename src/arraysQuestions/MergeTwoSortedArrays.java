@@ -37,8 +37,8 @@ public class MergeTwoSortedArrays {
 
 		obj.mergeArrays(arr1, arr2);
 
-		obj.printArray(arr1);
-		obj.printArray(arr2);
+		ArrayUtilCustom.printArray(arr1);
+		ArrayUtilCustom.printArray(arr2);
 	}
 
 	// Optimal: TC: O(NlogN) SC: O(1);
@@ -194,15 +194,6 @@ public class MergeTwoSortedArrays {
 		for (int i = 0; i < m; i++, index++) {
 			arr2[i] = result[index];
 		}
-	}
-
-	private void printArray(int[] arr) {
-		int n = arr.length;
-		System.out.print("[ ");
-		for (int i = 0; i < n - 1; i++) {
-			System.out.print(arr[i] + ", ");
-		}
-		System.out.println(arr[n - 1] + " ]");
 	}
 
 }
