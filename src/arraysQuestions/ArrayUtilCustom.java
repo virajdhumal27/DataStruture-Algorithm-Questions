@@ -1,8 +1,11 @@
 package arraysQuestions;
 
 public class ArrayUtilCustom {
+	
 	/*
 	 * Prints array.
+	 * 
+	 * @param - array
 	 */
 	public static void printArray(int[] arr) {
 		int n = arr.length;
@@ -31,5 +34,34 @@ public class ArrayUtilCustom {
 			System.out.print(arr[i] + ", ");
 		}
 		System.out.println(arr[end - 1] + " ]");
+	}
+	
+	/*
+	 * Prints 2-dimensional array.
+	 * 
+	 * @param - array
+	 */
+	public static void print2dArray(int[][] arr) {
+		int n = arr.length;
+		int m = arr[0].length;
+		
+		System.out.print("{ ");
+		for (int i = 0; i < n - 1; i++) {
+			int[] row = arr[i];
+			System.out.print("[ ");
+			
+			for(int j = 0; j < m - 1; j++) {
+				System.out.print(row[j] + ", ");
+			}
+			
+			System.out.print(row[m - 1] + " ], ");
+		}
+		
+		System.out.print("[ ");
+		for (int i = 0; i < m - 1; i++) {
+			System.out.print(arr[n-1][i] + ", ");
+		}
+		
+		System.out.println(arr[n-1][m-1] + " ] }");
 	}
 }
