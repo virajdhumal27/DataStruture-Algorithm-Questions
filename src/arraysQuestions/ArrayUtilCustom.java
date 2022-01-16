@@ -1,8 +1,14 @@
 package arraysQuestions;
 
+/**
+ * ArrayUtilCustom is a helper class for printing various arrays and reduce unnecessary complexity.
+ * This class will not be used for solving problems.
+ * 
+ * This class will be updated, if required to support more array related operations.
+ */
 public class ArrayUtilCustom {
 	
-	/*
+	/**
 	 * Prints array.
 	 * 
 	 * @param - array
@@ -12,8 +18,8 @@ public class ArrayUtilCustom {
 		printArray(arr, 0, n);
 	}
 	
-	/*
-	 * Prints array from 0 to n(n excluded).
+	/**
+	 * Prints array from 0 to n (n excluded).
 	 * @param - array
 	 * @param - length
 	 */
@@ -21,7 +27,7 @@ public class ArrayUtilCustom {
 		printArray(arr, 0, end);
 	}
 	
-	/*
+	/**
 	 * Prints array from start(inclusive) to end(exclusive).
 	 * 
 	 * @param - array
@@ -36,10 +42,10 @@ public class ArrayUtilCustom {
 		System.out.println(arr[end - 1] + " ]");
 	}
 	
-	/*
+	/**
 	 * Prints 2-dimensional array.
 	 * 
-	 * @param - array
+	 * @param - Array
 	 */
 	public static void print2dArray(int[][] arr) {
 		int n = arr.length;
@@ -63,5 +69,17 @@ public class ArrayUtilCustom {
 		}
 		
 		System.out.println(arr[n-1][m-1] + " ] }");
+	}
+	
+	/**
+	 * Prints a 2-dimensional array in a table format.
+	 * 
+	 * @param - Array
+	 * @
+	 */
+	public static void printArrayTable(int[][] arr) {
+		for(int[] row: arr) {
+			printArray(row);
+		}
 	}
 }
