@@ -5,13 +5,15 @@ package arraysQuestions;
  * This class will not be used for solving problems.
  * 
  * This class will be updated, if required to support more array related operations.
+ * 
+ * @since 2022-01-16
  */
 public class ArrayUtilCustom {
 	
 	/**
 	 * Prints array.
 	 * 
-	 * @param - array
+	 * @param arr Array to traverse and print.
 	 */
 	public static void printArray(int[] arr) {
 		int n = arr.length;
@@ -20,8 +22,9 @@ public class ArrayUtilCustom {
 	
 	/**
 	 * Prints array from 0 to n (n excluded).
-	 * @param - array
-	 * @param - length
+	 * 
+	 * @param arr Array to traverse and print.
+	 * @param end End index of array.
 	 */
 	public static void printArray(int[] arr, int end) {
 		printArray(arr, 0, end);
@@ -30,13 +33,13 @@ public class ArrayUtilCustom {
 	/**
 	 * Prints array from start(inclusive) to end(exclusive).
 	 * 
-	 * @param - array
-	 * @param - start
-	 * @param - end
+	 * @param arr Array to traverse and print.
+	 * @param start Start index of array.
+	 * @param end End index of array.
 	 */
-	public static void printArray(int[] arr, int start, int end) {
+	public static void printArray(int[] arr, int begin, int end) {
 		System.out.print("[ ");
-		for (int i = start; i < end - 1; i++) {
+		for (int i = begin; i < end - 1; i++) {
 			System.out.print(arr[i] + ", ");
 		}
 		System.out.println(arr[end - 1] + " ]");
@@ -45,7 +48,7 @@ public class ArrayUtilCustom {
 	/**
 	 * Prints 2-dimensional array.
 	 * 
-	 * @param - Array
+	 * @param arr A 2D Array to traverse and print.
 	 */
 	public static void print2dArray(int[][] arr) {
 		int n = arr.length;
@@ -74,8 +77,7 @@ public class ArrayUtilCustom {
 	/**
 	 * Prints a 2-dimensional array in a table format.
 	 * 
-	 * @param - Array
-	 * @
+	 * @param arr A 2d array to be printed in table format.
 	 */
 	public static void printArrayTable(int[][] arr) {
 		for(int[] row: arr) {
